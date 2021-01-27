@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.UUID;
 
+import static de.SetMyRoute.model.User.hashPassword;
+
 @RestController
 @RequestMapping(path = "/api")
 public class UserController {
@@ -26,7 +28,7 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping(value = "/users/{email}/{password}")
+    @GetMapping(value = "/user/{email}/{password}")
     public @ResponseBody
     Optional<User> getOneUserWithLogin(@PathVariable String email, @PathVariable String password) {
         Optional<User> user = userRepository.findByEmail(email);
@@ -36,7 +38,7 @@ public class UserController {
         return Optional.empty();
     }
 
-    @GetMapping(value = "/users/{authToken}")
+    @GetMapping(value = "/user/{authToken}")
     public @ResponseBody
     Optional<User> getOneUserByAuthToken(@PathVariable String authToken) {
         return userRepository.findByAuthToken(authToken);
@@ -56,12 +58,16 @@ public class UserController {
         return userRepository.save(user);
     }
 
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/user/{userId}/{authToken}")
     public @ResponseBody
-    String deleteUser(@PathVariable Integer userId) {
-        userRepository.deleteById(userId);
-        return "Deleted";
+    String deleteUser(@PathVariable Integer userId, @PathVariable String authToken) {
+        Optional<User> user = userRepository.findByAuthToken(authToken);
+        if(user.isPresent()) {
+            if (user.get().isAdmin()) {
+                userRepository.deleteById(userId);
+                return "Deleted";
+            }
+        }
+        return "Not allowed!";
     }
-
-
 }

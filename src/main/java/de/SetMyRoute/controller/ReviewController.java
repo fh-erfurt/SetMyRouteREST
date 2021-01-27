@@ -16,6 +16,8 @@ public class ReviewController {
     public ReviewRepository reviewRepository;
     @Autowired
     public RouteRepository routeRepository;
+    @Autowired
+    public UserRepository userRepository;
 
     @GetMapping(value = "/review/{routeID}")
     public @ResponseBody
@@ -37,17 +39,28 @@ public class ReviewController {
         return reviewRepository.findAll();
     }
 
-    @DeleteMapping("/review/delete/{id}")
+    @DeleteMapping("/review/delete/{id}/{authToken}")
     public @ResponseBody
-    String deleteReview(@PathVariable int id) {
-        reviewRepository.deleteById(id);
-        return "Deleted";
+    String deleteReview(@PathVariable int id, @PathVariable String authToken) {
+        Optional<User> user = userRepository.findByAuthToken(authToken);
+        Optional<Review> review = reviewRepository.findById(id);
+        if(user.isPresent() && review.isPresent()) {
+            if (user.get() == review.get().getAuthor() || user.get().isAdmin()) {
+                reviewRepository.deleteById(id);
+                return "Deleted";
+            }
+        }
+        return "Not Allowed";
     }
 
-    @PostMapping(path = "/review")
+    @PostMapping(path = "/review/{authToken}")
     public @ResponseBody
-    String addReview(Review review) {
-        reviewRepository.save(review);
-        return "added";
+    String addReview(Review review, @PathVariable String authToken) {
+        Optional<User> user = userRepository.findByAuthToken(authToken);
+        if(user.isPresent()) {
+            reviewRepository.save(review);
+            return "added";
+        }
+        return "Error 400";
     }
 }
