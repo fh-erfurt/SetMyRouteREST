@@ -19,4 +19,8 @@ public enum Signedness {
     public char getSuffix() {
         return suffix;
     }
+
+    public static Signedness fromInt(int value){
+        return values()[value];
+    }
 }

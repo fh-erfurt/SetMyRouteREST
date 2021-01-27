@@ -51,8 +51,4 @@ public class Difficulty extends DatabaseEntity
         return String.valueOf(value) + this.signedness.getSuffix();
     }
 
-    public static Signedness fromInt(int value){
-        return values()[value];
-    }
-
 }
