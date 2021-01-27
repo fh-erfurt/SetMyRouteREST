@@ -44,7 +44,7 @@ public class UserController {
 
     @PostMapping(path = "/user")
     public @ResponseBody
-    String addUser(String email, String password, String firstName, String lastName, byte onSightDegreeValue, int signedness) {
+    User addUser(String email, String password, String firstName, String lastName, byte onSightDegreeValue, int signedness) {
         Optional<Difficulty> difficulty = difficultyRepository.findByValueAndSignedness(onSightDegreeValue, signedness);
         if(!difficulty.isPresent()) {
             Difficulty temp = new Difficulty(onSightDegreeValue, Signedness.fromInt(signedness));
@@ -53,8 +53,7 @@ public class UserController {
         }
         UUID authToken = UUID.randomUUID();
         User user = new User(firstName, lastName, email, difficulty.get(), authToken.toString(), password);
-        userRepository.save(user);
-        return authToken.toString();
+        return userRepository.save(user);
     }
 
     @DeleteMapping("/user/{userId}")
