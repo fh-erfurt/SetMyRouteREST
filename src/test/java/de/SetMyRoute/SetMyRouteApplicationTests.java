@@ -43,8 +43,6 @@ class SetMyRouteApplicationTests
         user = userRepository.save(user);
         User user2 = new User("Antomssn", "Bespalov", "asbfsdfsdadb@fsd.de", two, UUID.randomUUID().toString(), User.hashPassword("anton"));
         userRepository.save(user2);
-        List<Hold> list1 = new ArrayList<>();
-        List<Hold> list2 = new ArrayList<>();
         Hold hold1 = new Hold("markus", "difficult");
         holdRepository.save(hold1);
         Hold hold2 = new Hold("markussdf", "difficsdfult");
@@ -81,5 +79,85 @@ class SetMyRouteApplicationTests
 
 		    userRepository.save(user);
 	    }
+    }
+    @Test
+    void addRoutes()
+    {
+        Difficulty one =  new Difficulty((byte) 6, Signedness.NEGATIVE);
+        Difficulty two = new Difficulty((byte) 9, Signedness.NEGATIVE);
+        Difficulty three = new Difficulty((byte) 7, Signedness.POSITIVE);
+        Difficulty four = new Difficulty((byte) 4, Signedness.NONE);
+        Difficulty five = new Difficulty((byte) 3, Signedness.NEGATIVE);
+        Difficulty six = new Difficulty((byte) 7, Signedness.NEGATIVE);
+        Difficulty seven =  new Difficulty((byte) 9, Signedness.NONE);
+        Difficulty eight = new Difficulty((byte) 10, Signedness.NEGATIVE);
+        Difficulty nine = new Difficulty((byte) 3, Signedness.POSITIVE);
+        Difficulty ten = new Difficulty((byte) 4, Signedness.NONE);
+        difficultyRepository.save(one);
+        difficultyRepository.save(two);
+        difficultyRepository.save(three);
+        difficultyRepository.save(four);
+        difficultyRepository.save(five);
+        difficultyRepository.save(six);
+        difficultyRepository.save(seven);
+        difficultyRepository.save(eight);
+        difficultyRepository.save(nine);
+        difficultyRepository.save(ten);
+        RouteColor grau = new RouteColor(Color.GRAY.getRGB(), "Grau");
+        RouteColor blau = new RouteColor(Color.BLUE.getRGB(), "Blau");
+        RouteColor rot = new RouteColor(Color.RED.getRGB(), "Rot");
+        RouteColor gruen = new RouteColor(Color.GREEN.getRGB(), "Grün");
+        RouteColor gelb = new RouteColor(Color.YELLOW.getRGB(), "Gelb");
+        routecolorRepository.save(grau);
+        routecolorRepository.save(blau);
+        routecolorRepository.save(rot);
+        routecolorRepository.save(gruen);
+        routecolorRepository.save(gelb);
+        List<Review> reviews1 = new ArrayList<>();
+        List<Review> reviews2 = new ArrayList<>();
+        List<Review> reviews3 = new ArrayList<>();
+        List<Review> reviews4 = new ArrayList<>();
+        List<Review> reviews5 = new ArrayList<>();
+        List<Review> reviews6 = new ArrayList<>();
+        List<Review> reviews7 = new ArrayList<>();
+        List<Review> reviews8 = new ArrayList<>();
+        List<Review> reviews9 = new ArrayList<>();
+        List<Review> reviews10 = new ArrayList<>();
+        Hold hold1 = new Hold("Crux", "round");
+        Hold hold2 = new Hold("Bluestone", "abstract");
+        Hold hold3 = new Hold("Entre Prie", "difficult");
+        Hold hold4 = new Hold("Crux", "triangle");
+        Hold hold5 = new Hold("Bluestone", "difficult");
+        Hold hold6 = new Hold("Entre Prie", "round");
+        Hold hold7 = new Hold("Crux", "cube");
+        Hold hold8 = new Hold("Bluestone", "slippery");
+        holdRepository.save(hold1);
+        holdRepository.save(hold2);
+        holdRepository.save(hold3);
+        holdRepository.save(hold4);
+        holdRepository.save(hold5);
+        holdRepository.save(hold6);
+        holdRepository.save(hold7);
+        holdRepository.save(hold8);
+        Route route1 = new Route( "Technik ist gefragt!", "22b", one, "Falk Hoch", LocalDateTime.now(), hold1,reviews1,grau);
+        Route route2 = new Route( "Tanz der Amygdalla", "13a", three, "Niclas Tief", LocalDateTime.now(), hold2,reviews2,blau);
+        Route route3 = new Route( "Route 5", "12b", two, "David Pabst", LocalDateTime.now(), hold3,reviews3,rot);
+        Route route4 = new Route( "Grüne Hölle", "24b", four, "Andi hinten", LocalDateTime.now(), hold4,reviews4,gruen);
+        Route route5 = new Route( "Ohne Technik fällts", "2a", five, "Ralf wegda", LocalDateTime.now(), hold5,reviews5,grau);
+        Route route6 = new Route( "Adrian machts", "5a", six, "Anni Klauts", LocalDateTime.now(), hold6,reviews7,gelb);
+        Route route7 = new Route( "Ab Hoch!", "7b",seven, "Falk Hoch", LocalDateTime.now(), hold7,reviews8,rot);
+        Route route8 = new Route( "Vorsicht Freifall", "11b", eight, "Andi hinten", LocalDateTime.now(), hold8,reviews9 ,gruen);
+        Route route9 = new Route( "Route 9", "15b", nine, "Anni Klauts", LocalDateTime.now(), hold8,reviews6,rot);
+        Route route10 = new Route( "Keine Idee", "22a", ten, "Niclas Tief", LocalDateTime.now(), hold2,reviews10,gelb);
+        routeRepository.save(route1);
+        routeRepository.save(route2);
+        routeRepository.save(route3);
+        routeRepository.save(route4);
+        routeRepository.save(route5);
+        routeRepository.save(route6);
+        routeRepository.save(route7);
+        routeRepository.save(route8);
+        routeRepository.save(route9);
+        routeRepository.save(route10);
     }
 }
