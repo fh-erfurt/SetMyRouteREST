@@ -62,9 +62,9 @@ class SetMyRouteApplicationTests
         routecolorRepository.save(red);
         RouteColor blue = new RouteColor(Color.blue.getRGB(), "Blau");
         routecolorRepository.save(blue);
-        Route route = new Route("Die Harte", "ja", one, "markus", LocalDateTime.now(), hold1, reviews1, red);
+        Route route = new Route("Die Harte", "ja", one, "markus", LocalDateTime.now(), reviews1, red);
         routeRepository.save(route);
-        Route route2 = new Route("Die Hasafarte", "ja", one, "markuasdass", LocalDateTime.now(), hold2, reviews2, blue);
+        Route route2 = new Route("Die Hasafarte", "ja", one, "markuasdass", LocalDateTime.now(),reviews2, blue);
         routeRepository.save(route2);
     }
 
@@ -139,16 +139,16 @@ class SetMyRouteApplicationTests
         holdRepository.save(hold6);
         holdRepository.save(hold7);
         holdRepository.save(hold8);
-        Route route1 = new Route( "Technik ist gefragt!", "22b", one, "Falk Hoch", LocalDateTime.now(), hold1,reviews1,grau);
-        Route route2 = new Route( "Tanz der Amygdalla", "13a", three, "Niclas Tief", LocalDateTime.now(), hold2,reviews2,blau);
-        Route route3 = new Route( "Route 5", "12b", two, "David Pabst", LocalDateTime.now(), hold3,reviews3,rot);
-        Route route4 = new Route( "Grüne Hölle", "24b", four, "Andi hinten", LocalDateTime.now(), hold4,reviews4,gruen);
-        Route route5 = new Route( "Ohne Technik fällts", "2a", five, "Ralf wegda", LocalDateTime.now(), hold5,reviews5,grau);
-        Route route6 = new Route( "Adrian machts", "5a", six, "Anni Klauts", LocalDateTime.now(), hold6,reviews7,gelb);
-        Route route7 = new Route( "Ab Hoch!", "7b",seven, "Falk Hoch", LocalDateTime.now(), hold7,reviews8,rot);
-        Route route8 = new Route( "Vorsicht Freifall", "11b", eight, "Andi hinten", LocalDateTime.now(), hold8,reviews9 ,gruen);
-        Route route9 = new Route( "Route 9", "15b", nine, "Anni Klauts", LocalDateTime.now(), hold8,reviews6,rot);
-        Route route10 = new Route( "Keine Idee", "22a", ten, "Niclas Tief", LocalDateTime.now(), hold2,reviews10,gelb);
+        Route route1 = new Route( "Technik ist gefragt!", "22b", one, "Falk Hoch", LocalDateTime.now(), reviews1,grau);
+        Route route2 = new Route( "Tanz der Amygdalla", "13a", three, "Niclas Tief", LocalDateTime.now(), reviews2,blau);
+        Route route3 = new Route( "Route 5", "12b", two, "David Pabst", LocalDateTime.now(),reviews3,rot);
+        Route route4 = new Route( "Grüne Hölle", "24b", four, "Andi hinten", LocalDateTime.now(),reviews4,gruen);
+        Route route5 = new Route( "Ohne Technik fällts", "2a", five, "Ralf wegda", LocalDateTime.now(), reviews5,grau);
+        Route route6 = new Route( "Adrian machts", "5a", six, "Anni Klauts", LocalDateTime.now(), reviews7,gelb);
+        Route route7 = new Route( "Ab Hoch!", "7b",seven, "Falk Hoch", LocalDateTime.now(), reviews8,rot);
+        Route route8 = new Route( "Vorsicht Freifall", "11b", eight, "Andi hinten", LocalDateTime.now(), reviews9 ,gruen);
+        Route route9 = new Route( "Route 9", "15b", nine, "Anni Klauts", LocalDateTime.now(),reviews6,rot);
+        Route route10 = new Route( "Keine Idee", "22a", ten, "Niclas Tief", LocalDateTime.now(), reviews10,gelb);
         routeRepository.save(route1);
         routeRepository.save(route2);
         routeRepository.save(route3);

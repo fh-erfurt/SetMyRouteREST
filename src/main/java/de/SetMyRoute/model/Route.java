@@ -76,15 +76,13 @@ public class Route extends DatabaseEntity
     {
     }
 
-    public Route(String name, String segment, Difficulty difficulty, String setter, LocalDateTime builtOn, Hold holdSet,
-                 List<Review> reviews, RouteColor color)
+    public Route(String name, String segment, Difficulty difficulty, String setter, LocalDateTime builtOn, List<Review> reviews, RouteColor color)
     {
         this.name = name;
         this.segment = segment;
         this.difficulty = difficulty;
         this.setter = setter;
         this.builtOn = builtOn;
-        this.holdSet = holdSet;
         this.reviews = reviews;
         this.color = color;
     }
@@ -144,11 +142,6 @@ public class Route extends DatabaseEntity
         return holdSet;
     }
 
-    public void setHolds(Hold holdSet)
-    {
-        this.holdSet = holdSet;
-    }
-
     public List<Review> getReviews()
     {
         return reviews;
@@ -167,5 +160,9 @@ public class Route extends DatabaseEntity
     public void setColor(RouteColor color)
     {
         this.color = color;
+    }
+
+    public void addReview (Review review) {
+        this.reviews.add(review);
     }
 }
